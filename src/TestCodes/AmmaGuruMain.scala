@@ -103,7 +103,7 @@ def methd(acb:Int): Unit ={
     return aa
   }
 
-//Method that  return any type
+//Method that  return any type 
   def defNameAnyType(a:String):Any = {
     if(a == "word"){
       var aword = "AMMA";

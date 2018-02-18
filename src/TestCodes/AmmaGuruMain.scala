@@ -2,6 +2,8 @@ package TestCodes
 
 import scala.util.control.Breaks._
 
+import TestCodes.implicitClassTest.TestClass3Implicit
+
 object AmmaGuruMain {
   var intro : Int = _
   def main(args: Array[String]) {
@@ -72,8 +74,99 @@ object AmmaGuruMain {
     //function with Option , Some, None
     println(calculateDonutCost("Glazed Donut", 5, None))
     println(calculateDonutCost("Glazed Donut", 5, Some("AMMA")))
+    
+    //function with Option and null pointer exception
+    optionNull(Some("text from Amma"));
+    optionNullHandling(None);
+    // optionNull(None); un comment to test null pointer exception
+    
+    var re : Option[String] = optionReturn("AMMA");     
+    println(s"${re.getOrElse("NO Coupon")}")
+    re match {
+     case Some(couponCode) => println(s"Today's coupon code = $couponCode")
+     case None => println(s"Sorry there is no coupon code today!")
+    }
+   
+//function with Option as return and various handeling of Null
+    re = optionReturn("invalid");    
+    println(s"${re.getOrElse("NO Coupon")}")
+    re match {
+     case Some(couponCode) => println(s"Today's coupon code = $couponCode")
+     case None => println(s"Sorry there is no coupon code today!")
+    }
+    
+    val tc = new TestClass();
+    
+    //Function testing implicit function
+    implicit val pi : Double = 3.14
+  //  implicit val pi1 : Double = 3.14
+    print(s"Circunmfeerecne : ${tc.implicitDef(999)}")
+    
+    //typed function or methode override 
+    print(tc.sameNameTypedfun(1111))
+    print(tc.sameNameTypedfun("AMMA GURU"))
+    
+    //Generic typed function   
+    tc.genericTypedFunction(99.99)
+    tc.genericTypedFunction("AMMA GURU")
+    tc.genericTypedFunction(tc)
+    
+    //Variable argument
+    tc.variableArg("AMMA","GURU","DEVI","MATHA")
+    tc.+++("MY DEAR AMMA")
+    
+    // Test class TestClass1
+    val obj = new TestClass1("Mata","Ammachi")
+    obj.printVars
+    
+    val obj2 = TestClass1("My AMMA","My GURU")
+    obj2.printVars
+    
+    //Companion calss with some value initiated -- didnt work
+    val obj3 = TestClass2("Calicut Ashram",Some("Amritha Nagar"))
+    obj3.printDetail
+    
+    val obj4 = TestClass2("Kollam Ashram")
+    obj4.printDetail
+    
+     val obj5 = TestClass3("Kollam Ashram 1st block", Some(40))
+      obj5.printdtl
+      
+     val obj6 = TestClass3("Kollam Ashram Kalari block")
+     obj6.printdtl
+     
+     println("Printing from main class a kind of getter: obj6.ASHRAMname : "+obj6.ASHRAMname)
+     println("Printing from main class a kind of getter: obj6.yearBuilt : "+obj6.yearBuilt)
+    
+    //Implicit class test     
+     val obj7  : TestClass3Implicit = implicitClassTest.TestClass3Implicit(obj6);    
+      println("Implicit Class test id value  : "+ obj7.id); 
+      
+      val obj8  : TestClass3Implicit = implicitClassTest.TestClass3Implicit(obj5);    
+      println("Implicit Class test id value : "+ obj8.id);
+ }
+  
+ object TestClass1 {
 
-  }
+ def apply(AMMA: String , GURU: String): TestClass1 = {
+   new TestClass1(AMMA, GURU)
+ }
+  
+} 
+ 
+ object TestClass2 {
+   
+   private val tempVal = 999
+
+ def apply(ASHRAM: String, place: Option[String]): TestClass2 = {
+   new TestClass2(ASHRAM, place)
+ }
+ 
+  def apply(ASHRAM: String): TestClass2 = {
+   new TestClass2(ASHRAM)
+ }
+  
+}  
 
 
   def checkIt (a:Int)  =  {
@@ -209,4 +302,32 @@ def methd(acb:Int): Unit ={
       case None => 2.50 * quantity
     }
   }
+  
+  def optionNullHandling(a : Option[String]): Unit = {
+    val sample: Option[String] = a;
+    println(s"Option with null check test : ${sample.getOrElse("Deafault value to protect null")}");
+    
+  }
+  
+  def optionNull(a : Option[String]): Unit = {
+    val sample: Option[String] = a;
+    println(s"Option with null check test : ${sample.get}");
+    
+  }
+  
+    def optionReturn(a : String): Option[String] = {
+    
+    if(a == "AMMA"){
+      val couponFromDb = "COUPON_1234"
+       Option(couponFromDb).filter(_.nonEmpty)
+      }
+    else{
+      None
+    }
+    
+  }
+    
+    
+  
+  
 }

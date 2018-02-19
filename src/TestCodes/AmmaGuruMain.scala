@@ -144,6 +144,16 @@ object AmmaGuruMain {
       
       val obj8  : TestClass3Implicit = implicitClassTest.TestClass3Implicit(obj5);    
       println("Implicit Class test id value : "+ obj8.id);
+      
+      //Trait example      
+      val obj9 : TestTraitDAO = new TestTraitDAOImpl()
+      println("Test trait methd1 : "+ obj9.mthd1("AMMA"))
+      println("Test trait methd2 : "+ obj9.mthd2("AMMA"))
+      println("Test trait methd3 : "+ obj9.mthd3("AMMA"))
+      
+       //Trait example with typed Parameter      
+      val obj10 : TestTrait2DAO[String] = new TestTrait2DAOImpl[String]()
+      println("Test typed parameter trait methd : "+ obj10.testMthd("AMMA"))
  }
   
  object TestClass1 {

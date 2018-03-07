@@ -11,7 +11,7 @@ class TestTraitDAOImpl  extends TestTraitDAO{
   }
    
    override def mthd3(name : String) : String = {
-    "9999"
+    "99999"
   }
   
   

@@ -8,7 +8,7 @@ object AmmaGuruMain {
   var intro : Int = _
   def main(args: Array[String]) {
   
-    println("AMMMA GURUVEY")
+    println("AMMMA GURUVEY NAMAHA")
     var myAmma:String = "Amma Guru"
     println(s"$myAmma")
     myAmma = "AMMA GURU999"
